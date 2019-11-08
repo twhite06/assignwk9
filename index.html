@@ -3,38 +3,68 @@
 	<head>
 		<title> JSON Practice: Set List </title>
 
+		<div id= "serial">
+
+		</div>
+
+		<div id = "friend">
+
+		</div>
+
+		<select id= "other">
+  			<option value="Rock">Rock</option>
+  			<option value=", Pop">Pop</option>
+		</select>
+		<input type="button" onclick = "myFunction(setlist)" value= "GO! ">
+		<div id = "newBihh">
+
+		</div>
+
 		<script language="javascript">
-			setlist =
+
+		var txt;
+		function myFunction(setlist){
+			var deez = document.getElementById("other");
+			var nuts = deez.value;
+			var GOTEM =  "<table border='1'>";
+			GOTEM += "<tr><td> Songs: <tr><td>";
+			for (x in setlist.songs){
+				if (setlist.songs[x].genre[0] == nuts || setlist.songs[x].genre[1] == nuts)
+					GOTEM += "<br>" + setlist.songs[x].name;
+			}
+			document.getElementById("newBihh").innerHTML = GOTEM;
+		}
+			setlist = 
 		{
 			"songs" : [
 			{
 				"name": "Jumpin' Jack Flash",
 				"artist": ["Rolling Stones"],
-				"genre": ["Rock", "Pop"],
+				"genre": ["Rock", ", Pop"],
 				"Released": "1972"
 			},
 			{
 				"name": "It's Only Rock And Roll",
-				"artist": ["Rolling Stones"],
-				"genre": ["Rock"],
+				"artist": ["Rolling Stones", ", Elvis Presley"],
+				"genre": ["Rock", ", Blues"],
 				"Released": "1972"
 			},
 			{
 				"name": "Tumbling Dice",
 				"artist": ["Rolling Stones"],
-				"genre": ["Rock", "Pop"],
+				"genre": ["Rock", ", Pop"],
 				"Released": "1970"
 			},
 			{
 				"name": "Out Of Control",
-				"artist": ["Rolling Stones"],
+				"artist": ["Rolling Stones", ", Mcjagger"],
 				"genre": ["Rock"],
 				"Released": "1997"
 			},
 			{
 				"name": "You Can't Always Get What You Want",
 				"artist": ["Rolling Stones"],
-				"genre": ["Rock", "Pop"],
+				"genre": ["Rock", ", Pop"],
 				"Released": "1968"
 			},
 			{
@@ -46,7 +76,7 @@
 			{
 				"name": "Sweet Virginia",
 				"artist": ["Rolling Stones"],
-				"genre": ["Rock", "Pop"],
+				"genre": ["Rock", ", Pop"],
 				"Released": "1972"
 			},
 			{
@@ -58,7 +88,7 @@
 			{
 				"name": "I Have No Sympathy For The Devil",
 				"artist": ["Rolling Stones"],
-				"genre": ["Rock", "Pop"],
+				"genre": ["Rock", ", Pop"],
 				"Released": "1968"
 			},
 			{
@@ -69,11 +99,32 @@
 			}
 			]
 		}
+		// make two divs. One for serialized data and one for user friendly data
+		// serialized: use get element.id.innerhtml = stringified object
+		// friendly: create a variable inside the innerHTML and += things inside 
 		STRsetlist = JSON.stringify(setlist);
-// 		document.write (STRsetlist + "<br>");
+		document.getElementById("serial").innerHTML = STRsetlist;
 		JSONsetlist = JSON.parse(STRsetlist);
-		for (i=0; i < 11; i++){
-			document.write(JSONsetlist[i]);
-		}
+		JSONsongs = JSONsetlist.songs;
+		txt += "<table border='1'>"
+		for (x in JSONsongs) {
+			txt += "<tr><td>" + JSONsongs[x].name;
+			txt += " <br> Artist: ";
+			for (y in JSONsongs[x].artist) {
+				txt += JSONsongs[x].artist[y];
+			}
+			txt += " <br> Genre: ";
+			for (y in JSONsongs[x].genre) {
+				txt += JSONsongs[x].genre[y];
+			}
+			txt += " <br> Released: ";
+				txt += JSONsongs[x].Released;
+			txt += "<br> </td></tr>";
+		} 
+		txt += "</table>" 
+		document.getElementById("friend").innerHTML = txt;
 		</script>
 	</head>
+
+
+</html>
