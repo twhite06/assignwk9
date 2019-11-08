@@ -1,4 +1,3 @@
-<!doctype html>
 <html>
 	<head>
 		<title> JSON Practice: Set List </title>
@@ -99,9 +98,7 @@
 			}
 			]
 		}
-		// make two divs. One for serialized data and one for user friendly data
-		// serialized: use get element.id.innerhtml = stringified object
-		// friendly: create a variable inside the innerHTML and += things inside 
+
 		STRsetlist = JSON.stringify(setlist);
 		document.getElementById("serial").innerHTML = STRsetlist;
 		JSONsetlist = JSON.parse(STRsetlist);
